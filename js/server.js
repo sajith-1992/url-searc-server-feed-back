@@ -6,11 +6,16 @@ http.createServer(function(req,res){
         res.writeHead(200,{'content-type':'text/html'})
         res.write(data)
         res.end()
-    })}else if(req.url==='/login'){
-        res.write('login')
-        res.end()
+    })}else if(req.url==='/signup'){
+        fs.readFile('signup.html',function(err,data){
+            res.writeHead(200,{'content-type':'text/html'})
+            res.write(data)
+            res.end()
+        })
+       
     }
     else{
+        res.writeHead(404,{'content-type':'text/html'})
         res.write('error')
         res.end()
     }
