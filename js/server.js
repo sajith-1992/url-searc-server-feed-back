@@ -1,18 +1,23 @@
 var http=require('http')
 var fs=require('fs')
+var url=require('url')
 http.createServer(function(req,res){
-    if(req.url==='/'){
+  var q=url.parse(req.url)
+       
+
+
+    if(q.pathname==='/'){
     fs.readFile('index.html',function(err,data){
         res.writeHead(200,{'content-type':'text/html'})
         res.write(data)
         res.end()
-    })}else if(req.url==='/sign'){
-        fs.readFile('signup.html',function(err,data){
+    })}else if(q.pathname==='/log'){
+        fs.readFile('sign.html',function(err,data){
             res.writeHead(200,{'content-type':'text/html'})
             res.write(data)
             res.end()
         })}
-        else if(req.url==='/signup'){
+        else if(q.pathname==='/signup'){
             res.write("hello")
             res.end()
             
