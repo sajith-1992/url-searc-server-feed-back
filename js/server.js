@@ -2,7 +2,7 @@ var http=require('http')
 var fs=require('fs')
 var url=require('url')
 http.createServer(function(req,res){
-  var q=url.parse(req.url)
+  var q=url.parse(req.url,true)
        
 
 
@@ -18,7 +18,9 @@ http.createServer(function(req,res){
             res.end()
         })}
         else if(q.pathname==='/signup'){
-            res.write("hello")
+           console.log(q.query.fname)
+           res.writeHead(200,{'content-type':'text/html'}) 
+           res.write('<h1>'+q.query.lname+'</h1>')
             res.end()
             
         }
